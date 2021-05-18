@@ -1,0 +1,3 @@
+D:\1.App\toolbox\apps\CLion\ch-0\211.7142.21\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\BP_iris.dir/objects.a
+C:\UserApp\mingw64\bin\ar.exe cr CMakeFiles\BP_iris.dir/objects.a @CMakeFiles\BP_iris.dir\objects1.rsp
+C:\UserApp\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\BP_iris.dir/objects.a -Wl,--no-whole-archive -o BP_iris.exe -Wl,--out-implib,libBP_iris.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BP_iris.dir\linklibs.rsp
