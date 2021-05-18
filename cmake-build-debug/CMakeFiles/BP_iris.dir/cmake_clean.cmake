@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "BP_iris.exe.manifest"
   "BP_iris.pdb"
   "CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj"
-  "CMakeFiles/BP_iris.dir/lib/Node/node.cpp.obj"
+  "CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj"
+  "CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj"
   "CMakeFiles/BP_iris.dir/main.cpp.obj"
   "libBP_iris.dll.a"
 )

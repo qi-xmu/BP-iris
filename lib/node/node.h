@@ -7,17 +7,6 @@
 
 
 class Node {
-public:
-    Node();
-
-    void calc()
-
-    double output();
-
-
-private:
-
-
 
 };
 
