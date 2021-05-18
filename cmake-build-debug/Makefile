@@ -141,6 +141,60 @@ BP_iris/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/build
 .PHONY : BP_iris/fast
 
+lib/BPNet/BPNet.obj: lib/BPNet/BPNet.cpp.obj
+
+.PHONY : lib/BPNet/BPNet.obj
+
+# target to build an object file
+lib/BPNet/BPNet.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj
+.PHONY : lib/BPNet/BPNet.cpp.obj
+
+lib/BPNet/BPNet.i: lib/BPNet/BPNet.cpp.i
+
+.PHONY : lib/BPNet/BPNet.i
+
+# target to preprocess a source file
+lib/BPNet/BPNet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.i
+.PHONY : lib/BPNet/BPNet.cpp.i
+
+lib/BPNet/BPNet.s: lib/BPNet/BPNet.cpp.s
+
+.PHONY : lib/BPNet/BPNet.s
+
+# target to generate assembly for a file
+lib/BPNet/BPNet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.s
+.PHONY : lib/BPNet/BPNet.cpp.s
+
+lib/Node/node.obj: lib/Node/node.cpp.obj
+
+.PHONY : lib/Node/node.obj
+
+# target to build an object file
+lib/Node/node.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/node.cpp.obj
+.PHONY : lib/Node/node.cpp.obj
+
+lib/Node/node.i: lib/Node/node.cpp.i
+
+.PHONY : lib/Node/node.i
+
+# target to preprocess a source file
+lib/Node/node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/node.cpp.i
+.PHONY : lib/Node/node.cpp.i
+
+lib/Node/node.s: lib/Node/node.cpp.s
+
+.PHONY : lib/Node/node.s
+
+# target to generate assembly for a file
+lib/Node/node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/node.cpp.s
+.PHONY : lib/Node/node.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -177,6 +231,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... BP_iris
+	@echo ... lib/BPNet/BPNet.obj
+	@echo ... lib/BPNet/BPNet.i
+	@echo ... lib/BPNet/BPNet.s
+	@echo ... lib/Node/node.obj
+	@echo ... lib/Node/node.i
+	@echo ... lib/Node/node.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

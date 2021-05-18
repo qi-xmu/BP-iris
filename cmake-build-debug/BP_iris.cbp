@@ -80,6 +80,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.cpp">
+			<Option target="BP_iris"/>
+		</Unit>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.h">
+			<Option target="BP_iris"/>
+		</Unit>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Node/node.cpp">
+			<Option target="BP_iris"/>
+		</Unit>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Node/node.h">
+			<Option target="BP_iris"/>
+		</Unit>
 		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/main.cpp">
 			<Option target="BP_iris"/>
 		</Unit>

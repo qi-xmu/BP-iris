@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.cpp" "D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj"
+  "D:/2.code/Cpp/CLion/BP-iris/lib/Node/node.cpp" "D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/BP_iris.dir/lib/Node/node.cpp.obj"
   "D:/2.code/Cpp/CLion/BP-iris/main.cpp" "D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/BP_iris.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

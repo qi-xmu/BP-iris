@@ -3,4 +3,4 @@ project(BP_iris)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(BP_iris main.cpp)
+add_executable(BP_iris main.cpp lib/node/node.cpp lib/node/node.h lib/BPNet/BPNet.cpp lib/BPNet/BPNet.h)
