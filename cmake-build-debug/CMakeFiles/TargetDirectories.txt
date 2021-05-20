@@ -1,3 +1,0 @@
-D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/BP_iris.dir
-D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/2.code/Cpp/CLion/BP-iris/cmake-build-debug/CMakeFiles/rebuild_cache.dir
