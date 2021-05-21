@@ -72,6 +72,7 @@ void Dateset<T>::dataLoader() {
             train_data.push_back(line_data);
         cnt++;
     }
+    return;
 }
 
 template<class T>

@@ -41,14 +41,17 @@ public:
     void input(v_double &value);
     /* 输出函数 */
     v_double output();
+
     /* 返回权重节点个数 不包括偏置节点 */
-    int node_size() const { return node_num; };
+    int nodeSize() const { return node_num; };
+
 
 protected:
     vector<v_double > W;    /* 权重 */
     vector<v_double > R;    /* 残差 */
     v_double node_value;    /* 节点输出值 */
     v_double node_residual; /* 节点残差 */
+    
     int node_num;           /* 网络层权重节点个数，不包含偏置节点 */
 };
 
@@ -64,8 +67,13 @@ public:
     void initWeight();
     /* 计算节点值并返回 */
     v_double getNodeValue(vector<double> value);
+    /* 返回节点残差 */
+    v_double nodeBackValue();
+
     /* 计算各个节点的残差 */
-    v_double getNodeResidual(int for_node_num, v_double &value);
+    v_double calNodeResidual(v_double value);
+    /* 更新权值和偏置 */
+    void updateWeights();
 
 private:
     int all_pre_node_num;   /* 上一层 */
@@ -81,21 +89,35 @@ public:
 
     /* 增加隐藏层 */
     void addHiddenLayer(int node_num);
+
     /* 读取数据 数据格式： 二维数组 vector<v_double > 数据 标签 */
-    void dataReader(const vector<v_double > &train_data, const vector<v_double> &test_data);
+    void dataReader(const vector<v_double > &train_data, const vector<v_double > &test_data);
+
     /* 训练 */
     void train();
+
     /* 预测 */
     void evaluate();
+
     /* 打印当前网络结构 */
     void summary();
+
     /* 前向传播 */
     void forward();
+
+    /* 反向传播 */
+    void backward(int label);
+    /* 测试用 */
+    v_double test(int label);
+
+    /* 返回总误差 */
+    double totalError() const { return total_error; };
 
 private:
     int dim;                /* 输入数据维度 */
     int num_classes;        /* 分类数量 */
     double learning_rate;   /* 学习率 */
+    double total_error;     /* 总误差 */
 
     unsigned long long layers_num;  /* 隐藏层个数 */
 
@@ -108,8 +130,8 @@ private:
     hiddenLayer output_layer;           /* 输出层 */
 
 
-    /* 计算误差并反向传播 */
-    void calResidualBack();
+    /* 输出层：计算误差并反向传播 */
+    void calResidual(int label);
 
 };
 

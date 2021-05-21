@@ -7,15 +7,25 @@ using namespace std;
 int main() {
     Dateset<double> d(R"(D:\2.code\Cpp\CLion\BP-iris\iris.data)");
     d.dataLoader();
-    /* Ö¸¶¨Êı¾İÎ¬¶È£¬·ÖÀàÊı£¬Ñ§Ï°ÂÊ */
+    /* æŒ‡å®šæ•°æ®ç»´åº¦ï¼Œåˆ†ç±»æ•°ï¼Œå­¦ä¹ ç‡ */
     BPNet net(4, 3, 0.01);
-    /* ¼ÓÔØÊı¾İ¼¯ */
+    /* åŠ è½½æ•°æ®é›† */
     net.dataReader(d.train_data, d.eval_data);
 
+    net.addHiddenLayer(4);
+    net.addHiddenLayer(5);
+    net.addHiddenLayer(4);
+
+    net.summary();
+
+    cout << "Test: ";
+    v_double out = net.test(d.train_data[0][4]);
+    for(auto i : out)
+        cout << i << " ";
+    cout << "Label: " << d.train_data[0][4] << endl;
+
+    cout << net.totalError() << endl;
 
 
-
-
-
-
+    return 0;
 }
