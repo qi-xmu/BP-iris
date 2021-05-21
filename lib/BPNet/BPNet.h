@@ -32,7 +32,7 @@ using namespace std;
 
 class Layer {
 public:
-    Layer();
+    v_double node_value;    /* 节点输出值 */
 
     /* 设置初始值 */
     void set(int dim);
@@ -45,20 +45,15 @@ public:
     /* 返回权重节点个数 不包括偏置节点 */
     int nodeSize() const { return node_num; };
 
-
 protected:
-    vector<v_double > W;    /* 权重 */
-    vector<v_double > R;    /* 残差 */
-    v_double node_value;    /* 节点输出值 */
-    v_double node_residual; /* 节点残差 */
-    
-    int node_num;           /* 网络层权重节点个数，不包含偏置节点 */
+    int node_num;          /* 网络层权重节点个数，不包含偏置节点 */
+    vector<v_double > W;   /* 权重 */
 };
 
 /* 隐藏神经元层 */
 class hiddenLayer : public Layer {
 public:
-    hiddenLayer();
+    v_double node_residual;       /* 节点残差 */
 
     /* 设置网络层参数 */
     void set(int pre_node_num, int node_num);
@@ -68,29 +63,33 @@ public:
     /* 计算节点值并返回 */
     v_double calNodeValue(vector<double> value);
     /* 计算各个节点的残差 */
-    v_double calNodeResidual(v_double value);
-    /* 返回节点残差计算值 */
+    void calNodeResidual(v_double value);
+    /* 返回节点传递计算值 */
     v_double nodeBackValue();
+    /* 输出层：计算方差并反向传播 */
+    v_double outputResidual(int label);
     /* 更新权值和偏置 */
-    void updateWeights();
+    void updateWeights(v_double pre_node_value,
+                       double learning_rate);
 
 private:
-    int all_pre_node_num;   /* 上一层 */
-
+    int pre_node_num;           /* 上一层 */
     void sigmod(double &x);     /* 激活函数 */
+
 };
 
 
 class BPNet {
 public:
     /* 初始化输入层，输出层 */
-    BPNet(int dim, int num_classes, double learning_rate = 0.01);
+    BPNet(int dim, int num_classes, double learning_rate = 0.5);
 
     /* 增加隐藏层 */
     void addHiddenLayer(int node_num);
 
     /* 读取数据 数据格式： 二维数组 vector<v_double > 数据 标签 */
-    void dataReader(const vector<v_double > &train_data, const vector<v_double > &test_data);
+    void dataReader(const vector<v_double > &train_data,
+                    const vector<v_double > &test_data);
 
     /* 训练 */
     void train();
@@ -100,17 +99,9 @@ public:
 
     /* 打印当前网络结构 */
     void summary();
-
-    /* 前向传播 */
-    void forward();
-
-    /* 反向传播 */
-    void backward(int label);
     /* 测试用 */
     v_double test();
 
-    /* 返回总误差 */
-    double totalError() const { return total_error; };
 
 private:
     int dim;                /* 输入数据维度 */
@@ -128,10 +119,11 @@ private:
     vector<hiddenLayer> hidden_layers;  /* 隐藏层 */
     hiddenLayer output_layer;           /* 输出层 */
 
+    /* 前向传播 */
+    void forward(v_double value);
 
-    /* 输出层：计算误差并反向传播 */
-    vector<double> outputResidual(int label);
-
+    /* 反向传播 */
+    void backward(int label);
 };
 
 
