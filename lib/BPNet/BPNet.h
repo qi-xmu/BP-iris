@@ -66,12 +66,11 @@ public:
     /* 初始化权值 */
     void initWeight();
     /* 计算节点值并返回 */
-    v_double getNodeValue(vector<double> value);
-    /* 返回节点残差 */
-    v_double nodeBackValue();
-
+    v_double calNodeValue(vector<double> value);
     /* 计算各个节点的残差 */
     v_double calNodeResidual(v_double value);
+    /* 返回节点残差计算值 */
+    v_double nodeBackValue();
     /* 更新权值和偏置 */
     void updateWeights();
 
@@ -108,7 +107,7 @@ public:
     /* 反向传播 */
     void backward(int label);
     /* 测试用 */
-    v_double test(int label);
+    v_double test();
 
     /* 返回总误差 */
     double totalError() const { return total_error; };
@@ -131,7 +130,7 @@ private:
 
 
     /* 输出层：计算误差并反向传播 */
-    void calResidual(int label);
+    vector<double> outputResidual(int label);
 
 };
 

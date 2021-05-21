@@ -19,9 +19,9 @@ int main() {
     net.summary();
 
     cout << "Test: ";
-    v_double out = net.test(d.train_data[0][4]);
-    for(auto i : out)
-        cout << i << " ";
+    v_double out = net.test();
+    for(int i=0;i<3;i++)
+        cout << out[i] << " ";
     cout << "Label: " << d.train_data[0][4] << endl;
 
     cout << net.totalError() << endl;
