@@ -90,13 +90,10 @@ public:
     /* 读取数据 数据格式： 二维数组 vector<v_double > 数据 标签 */
     void dataReader(const vector<v_double > &train_data,
                     const vector<v_double > &test_data);
-
     /* 训练 */
     void train();
-
     /* 预测 */
     void evaluate();
-
     /* 打印当前网络结构 */
     void summary();
     /* 测试用 */

@@ -11,6 +11,18 @@
 
 using namespace std;
 
+
+int findMax(v_double x){
+    int key = 0;
+    double max = x[0];
+    for(int i=1;i<x.size();i++){
+        if(x[i]>max){
+            max = x[i], key = i;
+        }
+    }
+    return key;
+}
+
 /*
  * Layer类 */
 
@@ -107,9 +119,6 @@ void hiddenLayer::calNodeResidual(v_double value) {
         /* 这里的 value = sum{下层网络残差 * 权值（由该节点指向下一层的权值）} */
         node_residual[i] = value[i] * (node_value[i] * (1 - node_value[i]));
     }
-    for (int i = 0; i < node_num; i++)
-        cout << node_residual[i] << " ";
-    cout << endl;
 }
 
 void hiddenLayer::updateWeights(v_double pre_node_value, double learning_rate) {
@@ -216,21 +225,45 @@ v_double hiddenLayer::outputResidual(int label) {
          * f`(z_i) = f(z_i) * (1 - f(z_i)) */
         node_residual[i] = (node_value[i] - lab[i]) * (node_value[i] * (1 - node_value[i]));
     }
-    cout << "\nResidual: ";
-    for (auto each : node_residual)
-        cout << each << " ";
-    cout << endl;
     return node_residual;
 }
 
 /* 训练 */
 void BPNet::train() {
-
+    cout << "Start to train >>>" << endl;
+    int cnt = 0, right_cnt = 0;
+    for(auto each : train_data) {
+        forward(each);
+        backward(each[dim]);
+        v_double out = output_layer.output();
+        cout <<"> " <<cnt++ << " Label: " << each[dim] << "\t";
+        for(auto it : out){
+            printf("%.6llf ", it);
+        }
+        int right = findMax(out);
+        cout <<"\t" << "Predict: " << findMax(out) << endl;
+        if(right == each[dim]) right_cnt++;
+    }
+    cout << "End trained. Accuracy: " << right_cnt / (double)cnt <<"<<<" << endl;
 }
 
 /* 预测 */
 void BPNet::evaluate() {
+    cout << "Start to evaluate >>>" << endl;
+    int cnt = 0, right_cnt = 0;
+    for(auto each : test_data) {
+        forward(each);
+        v_double out = output_layer.output();
+        cout <<"> " <<cnt++ << " Label: " << each[dim] << "\t";
+        for(auto it : out){
+            printf("%.6llf ", it);
+        }
+        int right = findMax(out);
+        cout <<"\t" << "Predict: " << right << endl;
+        if(right == each[dim]) right_cnt++;
+    }
 
+    cout << "End evaluated. Accuracy: " << right_cnt / (double)cnt <<"<<<" << endl;
 }
 
 void BPNet::summary() {
