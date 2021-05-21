@@ -1,32 +1,21 @@
 #include <iostream>
 #include "lib/Dateset/Dateset.h"
+#include "lib/BPNet/BPNet.h"
 
 using namespace std;
 
 int main() {
     Dateset<double> d(R"(D:\2.code\Cpp\CLion\BP-iris\iris.data)");
     d.dataLoader();
-    cout <<"训练集" << endl;
-    for(auto line :d.train_data){
-        for (auto num : line){
-            cout << num << "\t";
-        }
-        cout << endl;
-    }
-    cout <<"测试集" << endl;
-    for(auto line :d.eval_data){
-        for (auto num : line){
-            cout << num << "\t";
-        }
-        cout << endl;
-    }
-    d.confuse(50);
+    /* 指定数据维度，分类数，学习率 */
+    BPNet net(4, 3, 0.01);
+    /* 加载数据集 */
+    net.dataReader(d.train_data, d.eval_data);
 
-    cout <<"训练集" << endl;
-    for(int i=0;i<135;i++){
-        for (int j=0;j<5;j++){
-            cout << d.train_data[i][j] << "\t";
-        }
-        cout << endl;
-    }
+
+
+
+
+
+
 }
