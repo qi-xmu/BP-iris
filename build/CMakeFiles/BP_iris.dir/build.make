@@ -76,6 +76,7 @@ include CMakeFiles/BP_iris.dir/progress.make
 include CMakeFiles/BP_iris.dir/flags.make
 
 CMakeFiles/BP_iris.dir/main.cpp.obj: CMakeFiles/BP_iris.dir/flags.make
+CMakeFiles/BP_iris.dir/main.cpp.obj: CMakeFiles/BP_iris.dir/includes_CXX.rsp
 CMakeFiles/BP_iris.dir/main.cpp.obj: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BP_iris.dir/main.cpp.obj"
 	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BP_iris.dir\main.cpp.obj -c D:\2.code\Cpp\CLion\BP-iris\main.cpp
@@ -88,64 +89,21 @@ CMakeFiles/BP_iris.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BP_iris.dir/main.cpp.s"
 	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\2.code\Cpp\CLion\BP-iris\main.cpp -o CMakeFiles\BP_iris.dir\main.cpp.s
 
-CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj: CMakeFiles/BP_iris.dir/flags.make
-CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj: ../lib/BPNet/BPNet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BP_iris.dir\lib\BPNet\BPNet.cpp.obj -c D:\2.code\Cpp\CLion\BP-iris\lib\BPNet\BPNet.cpp
-
-CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.i"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\2.code\Cpp\CLion\BP-iris\lib\BPNet\BPNet.cpp > CMakeFiles\BP_iris.dir\lib\BPNet\BPNet.cpp.i
-
-CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.s"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\2.code\Cpp\CLion\BP-iris\lib\BPNet\BPNet.cpp -o CMakeFiles\BP_iris.dir\lib\BPNet\BPNet.cpp.s
-
-CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj: CMakeFiles/BP_iris.dir/flags.make
-CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj: ../lib/Dateset/Dateset.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BP_iris.dir\lib\Dateset\Dateset.cpp.obj -c D:\2.code\Cpp\CLion\BP-iris\lib\Dateset\Dateset.cpp
-
-CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.i"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\2.code\Cpp\CLion\BP-iris\lib\Dateset\Dateset.cpp > CMakeFiles\BP_iris.dir\lib\Dateset\Dateset.cpp.i
-
-CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.s"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\2.code\Cpp\CLion\BP-iris\lib\Dateset\Dateset.cpp -o CMakeFiles\BP_iris.dir\lib\Dateset\Dateset.cpp.s
-
-CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj: CMakeFiles/BP_iris.dir/flags.make
-CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj: ../lib/Node/Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BP_iris.dir\lib\Node\Node.cpp.obj -c D:\2.code\Cpp\CLion\BP-iris\lib\Node\Node.cpp
-
-CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.i"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\2.code\Cpp\CLion\BP-iris\lib\Node\Node.cpp > CMakeFiles\BP_iris.dir\lib\Node\Node.cpp.i
-
-CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.s"
-	C:\UserApp\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\2.code\Cpp\CLion\BP-iris\lib\Node\Node.cpp -o CMakeFiles\BP_iris.dir\lib\Node\Node.cpp.s
-
 # Object files for target BP_iris
 BP_iris_OBJECTS = \
-"CMakeFiles/BP_iris.dir/main.cpp.obj" \
-"CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj" \
-"CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj" \
-"CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj"
+"CMakeFiles/BP_iris.dir/main.cpp.obj"
 
 # External object files for target BP_iris
 BP_iris_EXTERNAL_OBJECTS =
 
 BP_iris.exe: CMakeFiles/BP_iris.dir/main.cpp.obj
-BP_iris.exe: CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj
-BP_iris.exe: CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj
-BP_iris.exe: CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj
 BP_iris.exe: CMakeFiles/BP_iris.dir/build.make
+BP_iris.exe: libBPNet.a
+BP_iris.exe: libDataset.a
 BP_iris.exe: CMakeFiles/BP_iris.dir/linklibs.rsp
 BP_iris.exe: CMakeFiles/BP_iris.dir/objects1.rsp
 BP_iris.exe: CMakeFiles/BP_iris.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable BP_iris.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\2.code\Cpp\CLion\BP-iris\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable BP_iris.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\BP_iris.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

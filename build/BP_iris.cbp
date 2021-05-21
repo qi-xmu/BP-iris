@@ -17,6 +17,94 @@
 					<DistClean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="BPNet">
+				<Option output="D:/2.code/Cpp/CLion/BP-iris/build/libBPNet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/2.code/Cpp/CLion/BP-iris/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 BPNet"/>
+					<CompileFile command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BPNet/fast">
+				<Option output="D:/2.code/Cpp/CLion/BP-iris/build/libBPNet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/2.code/Cpp/CLion/BP-iris/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 BPNet/fast"/>
+					<CompileFile command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Dataset">
+				<Option output="D:/2.code/Cpp/CLion/BP-iris/build/libDataset.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/2.code/Cpp/CLion/BP-iris/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 Dataset"/>
+					<CompileFile command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Dataset/fast">
+				<Option output="D:/2.code/Cpp/CLion/BP-iris/build/libDataset.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/2.code/Cpp/CLion/BP-iris/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 Dataset/fast"/>
+					<CompileFile command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/UserApp/mingw64/bin/mingw32-make.exe -f &quot;D:/2.code/Cpp/CLion/BP-iris/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="BP_iris">
 				<Option output="D:/2.code/Cpp/CLion/BP-iris/build/BP_iris.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="D:/2.code/Cpp/CLion/BP-iris/build"/>
@@ -24,6 +112,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -45,6 +134,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="D:/2.code/Cpp/CLion/BP-iris/include"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/UserApp/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -80,26 +170,14 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.cpp">
-			<Option target="BP_iris"/>
-		</Unit>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.h">
-			<Option target="BP_iris"/>
-		</Unit>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Dateset/Dateset.cpp">
-			<Option target="BP_iris"/>
-		</Unit>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Dateset/Dateset.h">
-			<Option target="BP_iris"/>
-		</Unit>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Node/Node.cpp">
-			<Option target="BP_iris"/>
-		</Unit>
-		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/lib/Node/Node.h">
-			<Option target="BP_iris"/>
-		</Unit>
 		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/main.cpp">
 			<Option target="BP_iris"/>
+		</Unit>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/src/BPNet.cpp">
+			<Option target="BPNet"/>
+		</Unit>
+		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/src/Dateset.cpp">
+			<Option target="Dataset"/>
 		</Unit>
 		<Unit filename="D:/2.code/Cpp/CLion/BP-iris/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

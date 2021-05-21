@@ -2,7 +2,7 @@
 // Created by 36014 on 2021/5/18.
 //
 
-#include "BPNet.h"
+#include "../include/BPNet.h"
 
 #include <ctime>
 #include <cmath>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-
+/*    */
 int findMax(v_double x){
     int key = 0;
     double max = x[0];
@@ -89,7 +89,7 @@ void hiddenLayer::initWeight() {
         w.resize(pre_node_num + 1);
         for (int j = 0; j < pre_node_num + 1; j++) {
             /*  w.i.j  -0.2000 ~ 0.2000 */
-            w[j] = (rand() % 10000) / 50000.0;
+            w[j] = (rand() % 10000) / 10000.0;
         }
         W[i] = w;
     }

@@ -3,7 +3,13 @@ project(BP_iris)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(BP_iris main.cpp
-        lib/BPNet/BPNet.cpp lib/BPNet/BPNet.h
-        lib/Dateset/Dateset.cpp lib/Dateset/Dateset.h
-        lib/Node/Node.cpp lib/Node/Node.h)
+INCLUDE_DIRECTORIES(
+        include
+)
+# 编译静态库
+add_library(BPNet STATIC src/BPNet.cpp)
+add_library(Dataset STATIC src/Dateset.cpp)
+
+add_executable(BP_iris main.cpp)
+# 链接静态库
+target_link_libraries(BP_iris BPNet Dataset)

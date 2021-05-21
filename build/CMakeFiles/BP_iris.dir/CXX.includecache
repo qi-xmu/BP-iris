@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.h
+../include/BPNet.h
 vector
 -
 
-D:/2.code/Cpp/CLion/BP-iris/lib/Dateset/Dateset.h
+../include/Dateset.h
 iostream
 -
 vector
@@ -27,8 +27,8 @@ ctime
 D:/2.code/Cpp/CLion/BP-iris/main.cpp
 iostream
 -
-lib/Dateset/Dateset.h
-D:/2.code/Cpp/CLion/BP-iris/lib/Dateset/Dateset.h
-lib/BPNet/BPNet.h
-D:/2.code/Cpp/CLion/BP-iris/lib/BPNet/BPNet.h
+Dateset.h
+D:/2.code/Cpp/CLion/BP-iris/Dateset.h
+BPNet.h
+D:/2.code/Cpp/CLion/BP-iris/BPNet.h
 

@@ -2,15 +2,6 @@
 // Created by 36014 on 2021/5/18.
 //
 
-#ifndef BP_IRIS_BPNET_H
-#define BP_IRIS_BPNET_H
-
-#include <vector>
-
-#define v_double vector<double>
-
-using namespace std;
-
 /* 神经元层类 神经网络层设计
  * * 基类 Layer 属性
  * 值：节点数量，各个节点权重
@@ -30,18 +21,24 @@ using namespace std;
  * 将 outputLayer 合并到 hiddenLayer 中
  * */
 
+#ifndef BP_IRIS_BPNET_H
+#define BP_IRIS_BPNET_H
+
+#include <vector>
+
+#define v_double vector<double>
+
+using namespace std;
+
 class Layer {
 public:
     v_double node_value;    /* 节点输出值 */
-
     /* 设置初始值 */
     void set(int dim);
-
     /* 输入函数 */
     void input(v_double &value);
     /* 输出函数 */
     v_double output();
-
     /* 返回权重节点个数 不包括偏置节点 */
     int nodeSize() const { return node_num; };
 
@@ -57,7 +54,6 @@ public:
 
     /* 设置网络层参数 */
     void set(int pre_node_num, int node_num);
-
     /* 初始化权值 */
     void initWeight();
     /* 计算节点值并返回 */
@@ -83,10 +79,8 @@ class BPNet {
 public:
     /* 初始化输入层，输出层 */
     BPNet(int dim, int num_classes, double learning_rate = 0.5);
-
     /* 增加隐藏层 */
     void addHiddenLayer(int node_num);
-
     /* 读取数据 数据格式： 二维数组 vector<v_double > 数据 标签 */
     void dataReader(const vector<v_double > &train_data,
                     const vector<v_double > &test_data);

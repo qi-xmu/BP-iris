@@ -129,6 +129,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named BPNet
+
+# Build rule for target.
+BPNet: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 BPNet
+.PHONY : BPNet
+
+# fast build rule for target.
+BPNet/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BPNet.dir\build.make CMakeFiles/BPNet.dir/build
+.PHONY : BPNet/fast
+
+#=============================================================================
+# Target rules for targets named Dataset
+
+# Build rule for target.
+Dataset: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Dataset
+.PHONY : Dataset
+
+# fast build rule for target.
+Dataset/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/build
+.PHONY : Dataset/fast
+
+#=============================================================================
 # Target rules for targets named BP_iris
 
 # Build rule for target.
@@ -140,87 +166,6 @@ BP_iris: cmake_check_build_system
 BP_iris/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/build
 .PHONY : BP_iris/fast
-
-lib/BPNet/BPNet.obj: lib/BPNet/BPNet.cpp.obj
-
-.PHONY : lib/BPNet/BPNet.obj
-
-# target to build an object file
-lib/BPNet/BPNet.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.obj
-.PHONY : lib/BPNet/BPNet.cpp.obj
-
-lib/BPNet/BPNet.i: lib/BPNet/BPNet.cpp.i
-
-.PHONY : lib/BPNet/BPNet.i
-
-# target to preprocess a source file
-lib/BPNet/BPNet.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.i
-.PHONY : lib/BPNet/BPNet.cpp.i
-
-lib/BPNet/BPNet.s: lib/BPNet/BPNet.cpp.s
-
-.PHONY : lib/BPNet/BPNet.s
-
-# target to generate assembly for a file
-lib/BPNet/BPNet.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/BPNet/BPNet.cpp.s
-.PHONY : lib/BPNet/BPNet.cpp.s
-
-lib/Dateset/Dateset.obj: lib/Dateset/Dateset.cpp.obj
-
-.PHONY : lib/Dateset/Dateset.obj
-
-# target to build an object file
-lib/Dateset/Dateset.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.obj
-.PHONY : lib/Dateset/Dateset.cpp.obj
-
-lib/Dateset/Dateset.i: lib/Dateset/Dateset.cpp.i
-
-.PHONY : lib/Dateset/Dateset.i
-
-# target to preprocess a source file
-lib/Dateset/Dateset.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.i
-.PHONY : lib/Dateset/Dateset.cpp.i
-
-lib/Dateset/Dateset.s: lib/Dateset/Dateset.cpp.s
-
-.PHONY : lib/Dateset/Dateset.s
-
-# target to generate assembly for a file
-lib/Dateset/Dateset.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Dateset/Dateset.cpp.s
-.PHONY : lib/Dateset/Dateset.cpp.s
-
-lib/Node/Node.obj: lib/Node/Node.cpp.obj
-
-.PHONY : lib/Node/Node.obj
-
-# target to build an object file
-lib/Node/Node.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.obj
-.PHONY : lib/Node/Node.cpp.obj
-
-lib/Node/Node.i: lib/Node/Node.cpp.i
-
-.PHONY : lib/Node/Node.i
-
-# target to preprocess a source file
-lib/Node/Node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.i
-.PHONY : lib/Node/Node.cpp.i
-
-lib/Node/Node.s: lib/Node/Node.cpp.s
-
-.PHONY : lib/Node/Node.s
-
-# target to generate assembly for a file
-lib/Node/Node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/lib/Node/Node.cpp.s
-.PHONY : lib/Node/Node.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -249,6 +194,60 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BP_iris.dir\build.make CMakeFiles/BP_iris.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/BPNet.obj: src/BPNet.cpp.obj
+
+.PHONY : src/BPNet.obj
+
+# target to build an object file
+src/BPNet.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BPNet.dir\build.make CMakeFiles/BPNet.dir/src/BPNet.cpp.obj
+.PHONY : src/BPNet.cpp.obj
+
+src/BPNet.i: src/BPNet.cpp.i
+
+.PHONY : src/BPNet.i
+
+# target to preprocess a source file
+src/BPNet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BPNet.dir\build.make CMakeFiles/BPNet.dir/src/BPNet.cpp.i
+.PHONY : src/BPNet.cpp.i
+
+src/BPNet.s: src/BPNet.cpp.s
+
+.PHONY : src/BPNet.s
+
+# target to generate assembly for a file
+src/BPNet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BPNet.dir\build.make CMakeFiles/BPNet.dir/src/BPNet.cpp.s
+.PHONY : src/BPNet.cpp.s
+
+src/Dateset.obj: src/Dateset.cpp.obj
+
+.PHONY : src/Dateset.obj
+
+# target to build an object file
+src/Dateset.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.obj
+.PHONY : src/Dateset.cpp.obj
+
+src/Dateset.i: src/Dateset.cpp.i
+
+.PHONY : src/Dateset.i
+
+# target to preprocess a source file
+src/Dateset.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.i
+.PHONY : src/Dateset.cpp.i
+
+src/Dateset.s: src/Dateset.cpp.s
+
+.PHONY : src/Dateset.s
+
+# target to generate assembly for a file
+src/Dateset.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.s
+.PHONY : src/Dateset.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -257,19 +256,18 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... BPNet
 	@echo ... BP_iris
-	@echo ... lib/BPNet/BPNet.obj
-	@echo ... lib/BPNet/BPNet.i
-	@echo ... lib/BPNet/BPNet.s
-	@echo ... lib/Dateset/Dateset.obj
-	@echo ... lib/Dateset/Dateset.i
-	@echo ... lib/Dateset/Dateset.s
-	@echo ... lib/Node/Node.obj
-	@echo ... lib/Node/Node.i
-	@echo ... lib/Node/Node.s
+	@echo ... Dataset
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/BPNet.obj
+	@echo ... src/BPNet.i
+	@echo ... src/BPNet.s
+	@echo ... src/Dateset.obj
+	@echo ... src/Dateset.i
+	@echo ... src/Dateset.s
 .PHONY : help
 
 
