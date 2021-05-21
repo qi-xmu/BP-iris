@@ -41,15 +41,15 @@ public:
     void input(v_double &value);
     /* 输出函数 */
     v_double output();
-    /* 返回节点个数 */
-    int node_size() { return node_num; };
+    /* 返回权重节点个数 不包括偏置节点 */
+    int node_size() const { return node_num; };
 
 protected:
     vector<v_double > W;    /* 权重 */
     vector<v_double > R;    /* 残差 */
     v_double node_value;    /* 节点输出值 */
     v_double node_residual; /* 节点残差 */
-    int node_num;           /* 网络层节点个数 */
+    int node_num;           /* 网络层权重节点个数，不包含偏置节点 */
 };
 
 /* 隐藏神经元层 */
@@ -63,12 +63,12 @@ public:
     /* 初始化权值 */
     void initWeight();
     /* 计算节点值并返回 */
-    v_double getNodeValue(v_double &value);
+    v_double getNodeValue(vector<double> value);
     /* 计算各个节点的残差 */
     v_double getNodeResidual(int for_node_num, v_double &value);
 
 private:
-    int pre_node_num;
+    int all_pre_node_num;   /* 上一层 */
 
     void sigmod(double &x);     /* 激活函数 */
 };
@@ -87,11 +87,17 @@ public:
     void train();
     /* 预测 */
     void evaluate();
+    /* 打印当前网络结构 */
+    void summary();
+    /* 前向传播 */
+    void forward();
 
 private:
     int dim;                /* 输入数据维度 */
     int num_classes;        /* 分类数量 */
     double learning_rate;   /* 学习率 */
+
+    unsigned long long layers_num;  /* 隐藏层个数 */
 
     /* 没有采用数据流的方式，这里选择直接读取所有数据 */
     vector<v_double > train_data;   /* 训练集数据 */
@@ -101,8 +107,7 @@ private:
     vector<hiddenLayer> hidden_layers;  /* 隐藏层 */
     hiddenLayer output_layer;           /* 输出层 */
 
-    /* 前向传播 */
-    void forward();
+
     /* 计算误差并反向传播 */
     void calResidualBack();
 
