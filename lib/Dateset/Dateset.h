@@ -18,21 +18,21 @@ template<class T>
 class Dateset {
 public:
     /* 数据集 */
-    int dim;    // 数据维度
-    vector<vector<T> > train_data;
-    vector<vector<T> > eval_data;
+    int dim{};    // 数据维度
+    vector<vector<T> > train_data;  /* 训练集数据 */
+    vector<vector<T> > eval_data;   /* 测试集数据 */
 
-    Dateset(const string &file_path, int dim = 4, int _mod = 10);
+    explicit Dateset(const string &file_path, int dim = 4, int _mod = 10);
 
     /* 加载数据 */
     void dataLoader();
 
     /* 数据混淆 */
-    void confuse(const int freq = 50);
+    void confuse(int freq = 50);
 
 private:
     string file_path;   // 文件路径
-    int mod;            // 取测试集的mod
+    int mod{};            // 取测试集的mod
 };
 
 
@@ -75,7 +75,7 @@ void Dateset<T>::dataLoader() {
 }
 
 template<class T>
-void Dateset<T>::confuse(const int freq) {
+void Dateset<T>::confuse(int freq) {
     time_t t;
     int len = train_data.size();
     srand((unsigned) time(&t));
