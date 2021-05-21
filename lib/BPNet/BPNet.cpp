@@ -111,35 +111,42 @@ void BPNet::addHiddenLayer(int node_num) {
     /* 当前隐藏层大小 */
     unsigned long long layers_num = hidden_layers.size();
     /* 连接前后层 */
-    if (layers_num == 0){   /* 当还没有隐藏层时，获取输入层参数 */
+    if (layers_num == 0) {   /* 当还没有隐藏层时，获取输入层参数 */
         new_hidden_layer.set(input_layer.node_size(),
                              node_num + 1);   /* +1 偏置 */
-    }
-    else{                   /* 当已经存在隐藏层时，获取最后一层参数 */
-        new_hidden_layer.set(hidden_layers[layers_num-1].node_size(),
+    } else {                   /* 当已经存在隐藏层时，获取最后一层参数 */
+        new_hidden_layer.set(hidden_layers[layers_num - 1].node_size(),
                              node_num + 1);
     }
+    /* 添加 */
+    hidden_layers.push_back(new_hidden_layer);
     /* 更新输出层参数 */
-    output_layer.set(node_num+1, num_classes);
+    output_layer.set(node_num + 1, num_classes);
 }
 
-void BPNet::dataReader(const vector<v_double > &train, const vector<v_double> &test) {
+void BPNet::dataReader(const vector<v_double > &train, const vector<v_double > &test) {
     this->train_data = train;
     this->test_data = test;
 }
-/* 训练 */
-void BPNet::train() {
 
-}
-/* 预测 */
-void BPNet::evaluate() {
-
-}
 /* 前向传播 */
 void BPNet::forward() {
+    unsigned long long layers_num = hidden_layers.size()
 
 }
+
 /* 反向传播 */
 void BPNet::calResidualBack() {
 
 }
+
+/* 训练 */
+void BPNet::train() {
+
+}
+
+/* 预测 */
+void BPNet::evaluate() {
+
+}
+
