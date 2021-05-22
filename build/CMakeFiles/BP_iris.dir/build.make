@@ -99,7 +99,6 @@ BP_iris_EXTERNAL_OBJECTS =
 BP_iris.exe: CMakeFiles/BP_iris.dir/main.cpp.obj
 BP_iris.exe: CMakeFiles/BP_iris.dir/build.make
 BP_iris.exe: libBPNet.a
-BP_iris.exe: libDataset.a
 BP_iris.exe: CMakeFiles/BP_iris.dir/linklibs.rsp
 BP_iris.exe: CMakeFiles/BP_iris.dir/objects1.rsp
 BP_iris.exe: CMakeFiles/BP_iris.dir/link.txt

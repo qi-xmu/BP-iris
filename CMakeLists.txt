@@ -8,8 +8,7 @@ INCLUDE_DIRECTORIES(
 )
 # 编译静态库
 add_library(BPNet STATIC src/BPNet.cpp)
-add_library(Dataset STATIC src/Dateset.cpp)
 
 add_executable(BP_iris main.cpp)
 # 链接静态库
-target_link_libraries(BP_iris BPNet Dataset)
+target_link_libraries(BP_iris BPNet)

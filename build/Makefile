@@ -142,19 +142,6 @@ BPNet/fast:
 .PHONY : BPNet/fast
 
 #=============================================================================
-# Target rules for targets named Dataset
-
-# Build rule for target.
-Dataset: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Dataset
-.PHONY : Dataset
-
-# fast build rule for target.
-Dataset/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/build
-.PHONY : Dataset/fast
-
-#=============================================================================
 # Target rules for targets named BP_iris
 
 # Build rule for target.
@@ -221,33 +208,6 @@ src/BPNet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BPNet.dir\build.make CMakeFiles/BPNet.dir/src/BPNet.cpp.s
 .PHONY : src/BPNet.cpp.s
 
-src/Dateset.obj: src/Dateset.cpp.obj
-
-.PHONY : src/Dateset.obj
-
-# target to build an object file
-src/Dateset.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.obj
-.PHONY : src/Dateset.cpp.obj
-
-src/Dateset.i: src/Dateset.cpp.i
-
-.PHONY : src/Dateset.i
-
-# target to preprocess a source file
-src/Dateset.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.i
-.PHONY : src/Dateset.cpp.i
-
-src/Dateset.s: src/Dateset.cpp.s
-
-.PHONY : src/Dateset.s
-
-# target to generate assembly for a file
-src/Dateset.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dataset.dir\build.make CMakeFiles/Dataset.dir/src/Dateset.cpp.s
-.PHONY : src/Dateset.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -258,16 +218,12 @@ help:
 	@echo ... rebuild_cache
 	@echo ... BPNet
 	@echo ... BP_iris
-	@echo ... Dataset
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
 	@echo ... src/BPNet.obj
 	@echo ... src/BPNet.i
 	@echo ... src/BPNet.s
-	@echo ... src/Dateset.obj
-	@echo ... src/Dateset.i
-	@echo ... src/Dateset.s
 .PHONY : help
 
 

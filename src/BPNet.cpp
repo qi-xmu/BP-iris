@@ -12,11 +12,11 @@
 using namespace std;
 
 /*    */
-int findMax(v_double x){
+int findMax(v_double x) {
     int key = 0;
     double max = x[0];
-    for(int i=1;i<x.size();i++){
-        if(x[i]>max){
+    for (int i = 1; i < x.size(); i++) {
+        if (x[i] > max) {
             max = x[i], key = i;
         }
     }
@@ -88,8 +88,7 @@ void hiddenLayer::initWeight() {
         /* 预分配内存，不改变size resize会改变size */
         w.resize(pre_node_num + 1);
         for (int j = 0; j < pre_node_num + 1; j++) {
-            /*  w.i.j  -0.2000 ~ 0.2000 */
-            w[j] = (rand() % 10000) / 10000.0;
+            w[j] = (rand() % 10000) / 5000.0;
         }
         W[i] = w;
     }
@@ -102,14 +101,14 @@ v_double hiddenLayer::calNodeValue(vector<double> value) {
         for (int j = 0; j < pre_node_num + 1; j++) {
             node_value[i] += W[i][j] * value[j];
         }
-        sigmod(node_value[i]);  /* 激活函数 */
+        node_value[i] = sigmod(node_value[i]);  /* 激活函数 */
     }
     return node_value;
 }
 
 /* 激活函数 */
-void hiddenLayer::sigmod(double &x) {
-    x = 1.0 / (1.0 + exp(-x));
+inline double hiddenLayer::sigmod(double x) {
+    return 1.0 / (1.0 + exp(-x));
 }
 
 /* 计算各个节点的残差 */
@@ -124,12 +123,40 @@ void hiddenLayer::calNodeResidual(v_double value) {
 void hiddenLayer::updateWeights(v_double pre_node_value, double learning_rate) {
     /* 更新输出层权重 */
     v_double residual = node_residual;
-    for (int i = 0; i<node_num;i++){
-        for(int j=0; j<pre_node_num+1;j++){
-            double update_value =  learning_rate * node_residual[i] * pre_node_value[j];
+    for (int i = 0; i < node_num; i++) {
+        for (int j = 0; j < pre_node_num + 1; j++) {
+            double update_value = learning_rate * node_residual[i] * pre_node_value[j];
             W[i][j] -= update_value;
         }
     }
+}
+
+/* 计算输出节点残差
+ * 每一个节点都有一个残差值 */
+v_double hiddenLayer::outputResidual(int label) {
+    /* 制作标签容器 */
+    v_double lab(node_num, 0);
+    lab[label] = 1;
+
+    /* 求输出残差 */
+    node_residual.resize(node_num);
+    for (int i = 0; i < node_num; i++) {
+        /* 公式：（预测 - 实际）* 预测函数的导数 f`(z_i)
+         * f`(z_i) = f(z_i) * (1 - f(z_i)) */
+        node_residual[i] = (node_value[i] - lab[i]) * (node_value[i] * (1 - node_value[i]));
+    }
+    return node_residual;
+}
+
+double hiddenLayer::totalError(int label) {
+    double error = 0;
+    /* 制作标签容器 */
+    v_double lab(node_num, 0);
+    lab[label] = 1;
+    for (int i = 0; i < node_num; i++) {
+        error += pow(node_value[i] - lab[i], 2);
+    }
+    return error;
 }
 
 /*
@@ -183,24 +210,23 @@ void BPNet::forward(v_double value) {
     output_layer.calNodeValue(layer_value);
 }
 
-/* 反向传播 */
-void BPNet::backward(int label) {
+/* 返回值：误差  反向传播 */
+double BPNet::backward(int label) {
     /* 计算输出层残差 */
     output_layer.outputResidual(label);
     v_double value = output_layer.nodeBackValue();
     /* 更新输出层权重 */
     output_layer.updateWeights(
-            hidden_layers[layers_num-1].node_value,
+            hidden_layers[layers_num - 1].node_value,
             learning_rate);
     for (int i = (int) layers_num - 1; i >= 1; i--) {
         /* 计算第i层残差 */
         hidden_layers[i].calNodeResidual(value);
         /* 计算传递值 残差 * 权值 */
         value = hidden_layers[i].nodeBackValue();
-
         /* 更新权重 */
         hidden_layers[i].updateWeights(
-                hidden_layers[i-1].node_value,
+                hidden_layers[i - 1].node_value,
                 learning_rate);
     }
     /* 计算隐藏层第一层权重 */
@@ -209,61 +235,58 @@ void BPNet::backward(int label) {
     hidden_layers[0].updateWeights(
             input_layer.node_value,
             learning_rate);
-}
-
-/* 计算输出节点残差
- * 每一个节点都有一个残差值 */
-v_double hiddenLayer::outputResidual(int label) {
-    /* 制作标签容器 */
-    v_double lab(node_num, 0);
-    lab[label] = 1;
-
-    /* 求输出残差 */
-    node_residual.resize(node_num);
-    for (int i = 0; i < node_num; i++) {
-        /* 公式：（预测 - 实际）* 预测函数的导数 f`(z_i)
-         * f`(z_i) = f(z_i) * (1 - f(z_i)) */
-        node_residual[i] = (node_value[i] - lab[i]) * (node_value[i] * (1 - node_value[i]));
-    }
-    return node_residual;
+    return output_layer.totalError(label);
 }
 
 /* 训练 */
-void BPNet::train() {
+void BPNet::train(int epoch) {
     cout << "Start to train >>>" << endl;
     int cnt = 0, right_cnt = 0;
-    for(auto each : train_data) {
-        forward(each);
-        backward(each[dim]);
-        v_double out = output_layer.output();
-        cout <<"> " <<cnt++ << " Label: " << each[dim] << "\t";
-        for(auto it : out){
-            printf("%.6llf ", it);
+    for (int i = 0; i < epoch; i++) {
+        for (auto each : train_data) {
+            forward(each);          /* 前向传播 */
+            v_double out = output_layer.output();
+            cout << "> " << cnt++ << " Label: " << each[dim] << "\t";
+            for (auto it : out) {
+                printf("%.6llf ", it);
+            }
+
+            cout << "Error: " << backward(each[dim]);    /* 误差反向传播 */
+            int right = findMax(out);
+            cout << "\t" << " Predict: " << findMax(out) << "\t";
+            if (right == each[dim]){
+                right_cnt++;
+                cout << "1";
+            }
+            cout << endl;
         }
-        int right = findMax(out);
-        cout <<"\t" << "Predict: " << findMax(out) << endl;
-        if(right == each[dim]) right_cnt++;
     }
-    cout << "End trained. Accuracy: " << right_cnt / (double)cnt <<"<<<" << endl;
+    cout << "End trained. Accuracy: " << right_cnt / (double) cnt << "<<<" << endl;
 }
 
 /* 预测 */
 void BPNet::evaluate() {
     cout << "Start to evaluate >>>" << endl;
     int cnt = 0, right_cnt = 0;
-    for(auto each : test_data) {
+    for (auto each : test_data) {
         forward(each);
         v_double out = output_layer.output();
-        cout <<"> " <<cnt++ << " Label: " << each[dim] << "\t";
-        for(auto it : out){
+        cout << "> " << cnt++ << "\t";
+        for (auto it : out) {
             printf("%.6llf ", it);
         }
+        cout << "Label: " << each[dim];
         int right = findMax(out);
-        cout <<"\t" << "Predict: " << right << endl;
-        if(right == each[dim]) right_cnt++;
+        cout << "\t" << "Predict: " << right << "\t";
+        if (right == each[dim]){
+            right_cnt++;
+            cout << "1";
+        }
+        cout << endl;
+//        backward(each[dim]);
     }
 
-    cout << "End evaluated. Accuracy: " << right_cnt / (double)cnt <<"<<<" << endl;
+    cout << "End evaluated. Accuracy: " << right_cnt / (double) cnt << "<<<" << endl;
 }
 
 void BPNet::summary() {

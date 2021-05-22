@@ -62,18 +62,19 @@ public:
     void calNodeResidual(v_double value);
     /* 返回节点传递计算值 */
     v_double nodeBackValue();
-    /* 输出层：计算方差并反向传播 */
-    v_double outputResidual(int label);
     /* 更新权值和偏置 */
     void updateWeights(v_double pre_node_value,
                        double learning_rate);
+    /* 输出层：计算输出层残差 */
+    v_double outputResidual(int label);
+    /* 输出层：计算误差值 */
+    double totalError(int label);
 
 private:
     int pre_node_num;           /* 上一层 */
-    void sigmod(double &x);     /* 激活函数 */
+    inline double sigmod(double x);     /* 激活函数 */
 
 };
-
 
 class BPNet {
 public:
@@ -85,14 +86,13 @@ public:
     void dataReader(const vector<v_double > &train_data,
                     const vector<v_double > &test_data);
     /* 训练 */
-    void train();
+    void train(int epoch = 1);
     /* 预测 */
     void evaluate();
     /* 打印当前网络结构 */
     void summary();
     /* 测试用 */
     v_double test();
-
 
 private:
     int dim;                /* 输入数据维度 */
@@ -114,7 +114,7 @@ private:
     void forward(v_double value);
 
     /* 反向传播 */
-    void backward(int label);
+    double backward(int label);
 };
 
 
