@@ -4,7 +4,7 @@
 # compile CXX with C:/UserApp/mingw64/bin/g++.exe
 CXX_DEFINES = 
 
-CXX_INCLUDES = @CMakeFiles/BP_iris.dir/includes_CXX.rsp
+CXX_INCLUDES = @CMakeFiles/BPNet.dir/includes_CXX.rsp
 
 CXX_FLAGS = -g -std=gnu++11
 

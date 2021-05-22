@@ -1,0 +1,2 @@
+C:\UserApp\mingw64\bin\ar.exe qc libDataset.a CMakeFiles/Dataset.dir/src/Dateset.cpp.obj
+C:\UserApp\mingw64\bin\ranlib.exe libDataset.a

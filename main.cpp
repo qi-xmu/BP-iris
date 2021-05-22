@@ -1,21 +1,38 @@
 #include <iostream>
-#include "lib/Dateset/Dateset.h"
-#include "lib/BPNet/BPNet.h"
+#include "Dateset.h"
+#include "BPNet.h"
 
 using namespace std;
 
 int main() {
-    Dateset<double> d(R"(D:\2.code\Cpp\CLion\BP-iris\iris.data)");
+    Dateset<double> d(R"(..\iris.data)");
     d.dataLoader();
-    /* Ö¸¶¨Êı¾İÎ¬¶È£¬·ÖÀàÊı£¬Ñ§Ï°ÂÊ */
-    BPNet net(4, 3, 0.01);
-    /* ¼ÓÔØÊı¾İ¼¯ */
+
+    d.normalize();
+    d.divide(10);
+    /* æ•°æ®æ··æ·† */
+//    d.confuse(10000);
+
+    /* æŒ‡å®šæ•°æ®ç»´åº¦ï¼Œåˆ†ç±»æ•°ï¼Œå­¦ä¹ ç‡ */
+    BPNet net(4, 3, 1);
+    /* åŠ è½½æ•°æ®é›† */
     net.dataReader(d.train_data, d.eval_data);
+    /* ç½‘ç»œç»“æ„ */
+    net.addHiddenLayer(4);
+    net.addHiddenLayer(6);
+    net.addHiddenLayer(8);
+    net.addHiddenLayer(10);
+    net.addHiddenLayer(10);
+    net.addHiddenLayer(8);
+    net.addHiddenLayer(6);
+    net.addHiddenLayer(4);
+    net.addHiddenLayer(3);
+    /* æ‰“å°ç½‘ç»œç»“æ„ */
+    net.summary();
+    /* å¼€å§‹è®­ç»ƒ */
+    net.train(100);
+    /* å¼€å§‹è¯„ä¼° */
+    net.evaluate();
 
-
-
-
-
-
-
+    return 0;
 }
