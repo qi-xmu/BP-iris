@@ -9,6 +9,10 @@
 ../include/BPNet.h
 vector
 -
+string
+-
+fstream
+-
 
 ../include/Dateset.h
 iostream

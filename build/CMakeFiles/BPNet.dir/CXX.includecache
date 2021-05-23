@@ -9,6 +9,10 @@
 D:/2.code/Cpp/CLion/BP-iris/include/BPNet.h
 vector
 -
+string
+-
+fstream
+-
 
 D:/2.code/Cpp/CLion/BP-iris/src/BPNet.cpp
 ../include/BPNet.h

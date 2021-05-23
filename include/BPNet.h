@@ -25,6 +25,8 @@
 #define BP_IRIS_BPNET_H
 
 #include <vector>
+#include <string>
+#include <fstream>
 
 #define v_double vector<double>
 
@@ -32,7 +34,8 @@ using namespace std;
 
 class Layer {
 public:
-    v_double node_value;    /* 节点输出值 */
+    v_double node_value;                /* 节点输出值 */
+
     /* 设置初始值 */
     void set(int dim);
     /* 输入函数 */
@@ -41,16 +44,18 @@ public:
     v_double output();
     /* 返回权重节点个数 不包括偏置节点 */
     int nodeSize() const { return node_num; };
+    /* 保存使用:到处网络权重值 */
+    vector<v_double > nodeWeights(){ return W; };
 
 protected:
-    int node_num;          /* 网络层权重节点个数，不包含偏置节点 */
-    vector<v_double > W;   /* 权重 */
+    int node_num;                       /* 网络层权重节点个数，不包含偏置节点 */
+    vector<v_double > W;                /* 权重 */
 };
 
 /* 隐藏神经元层 */
 class hiddenLayer : public Layer {
 public:
-    v_double node_residual;       /* 节点残差 */
+    v_double node_residual;             /* 节点残差 */
 
     /* 设置网络层参数 */
     void set(int pre_node_num, int node_num);
@@ -71,9 +76,8 @@ public:
     double totalError(int label);
 
 private:
-    int pre_node_num;           /* 上一层 */
+    int pre_node_num;                   /* 上一层节点数 */
     inline double sigmod(double x);     /* 激活函数 */
-
 };
 
 class BPNet {
@@ -86,25 +90,25 @@ public:
     void dataReader(const vector<v_double > &train_data,
                     const vector<v_double > &test_data);
     /* 训练 */
-    void train(int epoch = 1);
+    double train(int epoch = 1);
     /* 预测 */
-    void evaluate();
+    double evaluate();
     /* 打印当前网络结构 */
     void summary();
-    /* 测试用 */
-    v_double test();
+    /* 模型保存 */
+    void save(const string &path);
 
 private:
-    int dim;                /* 输入数据维度 */
-    int num_classes;        /* 分类数量 */
-    double learning_rate;   /* 学习率 */
-    double total_error;     /* 总误差 */
+    int dim;                            /* 输入数据维度 */
+    int num_classes;                    /* 分类数量 */
+    double learning_rate;               /* 学习率 */
+    double total_error;                 /* 总误差 */
 
-    unsigned long long layers_num;  /* 隐藏层个数 */
+    unsigned long long layers_num;      /* 隐藏层个数 */
 
     /* 没有采用数据流的方式，这里选择直接读取所有数据 */
-    vector<v_double > train_data;   /* 训练集数据 */
-    vector<v_double > test_data;    /* 测试集数据 */
+    vector<v_double > train_data;       /* 训练集数据 */
+    vector<v_double > test_data;        /* 测试集数据 */
 
     Layer input_layer;                  /* 输入层 */
     vector<hiddenLayer> hidden_layers;  /* 隐藏层 */

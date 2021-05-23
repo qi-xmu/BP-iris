@@ -18,7 +18,7 @@ template<class T>
 class Dateset {
 public:
     /* 数据集 */
-    int dim{};    // 数据维度
+    int dim{};                      /* 数据维度 */
     vector<vector<T> > train_data;  /* 训练集数据 */
     vector<vector<T> > eval_data;   /* 测试集数据 */
 
@@ -31,8 +31,9 @@ public:
     void divide(int mod = 10);
     /* 数据混淆 */
     void confuse(int freq = 50);
-
+    /* 打印 */
     void print();
+    vector<vector<T> > Data(){return data;};
 
 private:
     string file_path;                   // 文件路径

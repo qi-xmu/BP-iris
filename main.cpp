@@ -6,9 +6,11 @@ using namespace std;
 
 int main() {
     Dateset<double> d(R"(..\iris.data)");
+    /* 加载数据 */
     d.dataLoader();
     /* 数据归一化 */
     d.normalize();
+    /* 数据划分 */
     d.divide(3);
     /* 数据混淆：打乱顺序 */
     d.confuse(1000);
@@ -18,16 +20,17 @@ int main() {
     net.dataReader(d.train_data, d.eval_data);
     /* 网络结构 */
     net.addHiddenLayer(4);
-    net.addHiddenLayer(4);
+//    net.addHiddenLayer(3);
     /* 打印网络结构 */
     net.summary();
-    /* 开始训练 */
     clock_t start = clock();    /* 开始计时 */
-    net.train(  400);
+    /* 开始训练 */
+    net.train(500);
     clock_t end = clock();      /* 结束计时 */
     /* 开始评估 */
     net.evaluate();
-    cout << "训练时间：" << (end - start) /(double)CLOCKS_PER_SEC << endl;
+    cout << "训练时间：" << (end - start) / (double) CLOCKS_PER_SEC << endl;
+    net.save("../1.model");
 
     return 0;
 }
