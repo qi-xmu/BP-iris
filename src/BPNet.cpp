@@ -11,70 +11,50 @@
 
 using namespace std;
 
-/*    */
-int findMax(v_double x) {
-    int key = 0;
-    double max = x[0];
-    for (int i = 1; i < x.size(); i++) {
-        if (x[i] > max) {
-            max = x[i], key = i;
-        }
-    }
-    return key;
-}
-
 /*
  * Layer类 */
 
 /* 设置初始值 */
 void Layer::set(int dim) {
-    this->node_num = dim;   /* 数据维度即节点个数，偏置节点自行添加 */
+    this->node_num = dim;                           /* 数据维度即节点个数，偏置节点默认添加 */
     /* 初始化偏置节点 */
-    this->node_value.resize(node_num + 1);
-    this->node_value[node_num] = 1;  /* 偏置节点的输出始终为 1 */
+    this->node_value.resize(node_num + 1);  /* 包含偏置节点 */
+    this->node_value[node_num] = 1;                 /* 偏置节点的输出始终为 1 */
 }
 
 /* 输入函数：节点数，节点值 */
 void Layer::input(v_double &value) {
     this->node_value = value;
-    this->node_value[node_num] = 1;  /* 偏置量设置为 1 */
+    this->node_value[node_num] = 1;                 /* 偏置量设置为 1 */
 }
 
 /* 输出函数 */
 v_double Layer::output() {
     v_double out = node_value;
-    out.pop_back();
+    out.pop_back();                                 /* 不输出偏置节点 */
     return out;
 }
-
-/* 反向传播值 残差 * 权值 */
-v_double hiddenLayer::nodeBackValue() {
-    /* 计算上一层残差需要的值 */
-    v_double value(pre_node_num);
-    for (int i = 0; i < pre_node_num; i++)
-        for (int j = 0; j < node_num; j++) {
-            value[i] += node_residual[j] * W[j][i];
-        }
-    return value;
-}
-
 
 /*
  * hiddenLayer类 */
 
 void hiddenLayer::set(int pre_node_num, int node_num) {
     /* 初始化节点数据 */
-    this->pre_node_num = pre_node_num;  /* +1 偏置节点，应该对应value的dim */
+    this->pre_node_num = pre_node_num;              /* +1 偏置节点，应该对应value的dim */
     this->node_num = node_num;
 
     /* 初始化权重 */
     initWeight();
     /* 初始化节点 */
-    node_value.resize(node_num + 1);  /* 权重节点+偏置节点 */
+    node_value.resize(node_num + 1);        /* 权重节点+偏置节点 */
     node_value[node_num] = 1;
     /* 权重节点的输出始终为 1 */
 }
 
+/* 激活函数 */
+inline double hiddenLayer::sigmod(double x) {
+    return 1.0 / (1.0 + exp(-x));
+}
 
 /* 初始化神经网络层权重 */
 void hiddenLayer::initWeight() {
@@ -86,9 +66,10 @@ void hiddenLayer::initWeight() {
     for (int i = 0; i < node_num; i++) {
         v_double w;
         /* 预分配内存，不改变size resize会改变size */
-        w.resize(pre_node_num + 1);
-        for (int j = 0; j < pre_node_num + 1; j++) {
-            w[j] = (rand() % 10000) / 5000.0;
+        w.resize(pre_node_num + 1);         /* +1 偏置 */
+        /* 这里是每一个节点包含的向量 w ，数量为 前节点数量 + 偏置节点 */
+        for (int j = 0; j <= pre_node_num; j++) {   /* = 偏置 */
+            w[j] = (rand() % 100 + 50) / 150.0;
         }
         W[i] = w;
     }
@@ -98,33 +79,41 @@ void hiddenLayer::initWeight() {
 v_double hiddenLayer::calNodeValue(vector<double> value) {
     /* 更新节点的权重，偏置节点不更新 */
     for (int i = 0; i < node_num; i++) {
-        for (int j = 0; j < pre_node_num + 1; j++) {
+        for (int j = 0; j <= pre_node_num; j++) {   /* = 偏置 */
             node_value[i] += W[i][j] * value[j];
         }
-        node_value[i] = sigmod(node_value[i]);  /* 激活函数 */
+        node_value[i] = sigmod(node_value[i]);   /* 激活函数 */
     }
-    return node_value;
+    return node_value;                              /* 节点输出值 */
 }
 
-/* 激活函数 */
-inline double hiddenLayer::sigmod(double x) {
-    return 1.0 / (1.0 + exp(-x));
-}
 
-/* 计算各个节点的残差 */
+/* 计算各个节点的残差（不包括输出层） */
 void hiddenLayer::calNodeResidual(v_double value) {
-    node_residual.resize(node_num);
-    for (int i = 0; i < node_num; i++) {
+    node_residual.resize(node_num + 1);     /* +1 偏置 */
+    for (int i = 0; i <= node_num; i++) {           /* = 偏置 */
         /* 这里的 value = sum{下层网络残差 * 权值（由该节点指向下一层的权值）} */
         node_residual[i] = value[i] * (node_value[i] * (1 - node_value[i]));
     }
 }
 
+/* 反向传播值 残差 * 权值 */
+v_double hiddenLayer::nodeBackValue() {
+    /* 计算上一层残差需要的值 */
+    v_double value(pre_node_num + 1);           /* +1 偏置节点 */
+    for (int i = 0; i <= pre_node_num; i++)        /* = 偏置结点 */
+        for (int j = 0; j < node_num; j++) {
+            value[i] += node_residual[j] * W[j][i];
+        }
+    return value;                                   /* 返回值为反向传递值 */
+}
+
+/* 通过残差更新网络 */
 void hiddenLayer::updateWeights(v_double pre_node_value, double learning_rate) {
     /* 更新输出层权重 */
-    v_double residual = node_residual;
     for (int i = 0; i < node_num; i++) {
-        for (int j = 0; j < pre_node_num + 1; j++) {
+        /* 更新一个节点内的权重，最后一个为偏置量 */
+        for (int j = 0; j <= pre_node_num; j++) {   /* = 偏置 */
             double update_value = learning_rate * node_residual[i] * pre_node_value[j];
             W[i][j] -= update_value;
         }
@@ -250,11 +239,10 @@ void BPNet::train(int epoch) {
             for (auto it : out) {
                 printf("%.6llf ", it);
             }
-
             cout << "Error: " << backward(each[dim]);    /* 误差反向传播 */
             int right = findMax(out);
             cout << "\t" << " Predict: " << findMax(out) << "\t";
-            if (right == each[dim]){
+            if (right == each[dim]) {
                 right_cnt++;
                 cout << "1";
             }
@@ -278,14 +266,13 @@ void BPNet::evaluate() {
         cout << "Label: " << each[dim];
         int right = findMax(out);
         cout << "\t" << "Predict: " << right << "\t";
-        if (right == each[dim]){
+        if (right == each[dim]) {
             right_cnt++;
             cout << "1";
         }
         cout << endl;
 //        backward(each[dim]);
     }
-
     cout << "End evaluated. Accuracy: " << right_cnt / (double) cnt << "<<<" << endl;
 }
 
@@ -305,3 +292,15 @@ v_double BPNet::test() {
     backward(0);
     return output_layer.output();
 };
+
+/*  寻找最大值  */
+int BPNet::findMax(v_double x) {
+    int key = 0;
+    double max = x[0];
+    for (int i = 1; i < x.size(); i++) {
+        if (x[i] > max) {
+            max = x[i], key = i;
+        }
+    }
+    return key;
+}
