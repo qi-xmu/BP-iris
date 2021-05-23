@@ -56,7 +56,7 @@ public:
     void set(int pre_node_num, int node_num);
     /* 初始化权值 */
     void initWeight();
-    /* 计算节点值并返回 */
+    /* 计算节点输出值并返回 */
     v_double calNodeValue(vector<double> value);
     /* 计算各个节点的残差 */
     void calNodeResidual(v_double value);
@@ -115,6 +115,9 @@ private:
 
     /* 反向传播 */
     double backward(int label);
+
+    /* 寻找最大值下标 */
+    int findMax(v_double x);
 };
 
 
