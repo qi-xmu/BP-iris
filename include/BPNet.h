@@ -112,10 +112,8 @@ private:
 
     /* 前向传播 */
     void forward(v_double value);
-
     /* 反向传播 */
     double backward(int label);
-
     /* 寻找最大值下标 */
     int findMax(v_double x);
 };

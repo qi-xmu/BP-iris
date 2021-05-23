@@ -233,18 +233,18 @@ void BPNet::train(int epoch) {
     int cnt = 0, right_cnt = 0;
     for (int i = 0; i < epoch; i++) {
         for (auto each : train_data) {
-            forward(each);          /* 前向传播 */
+            forward(each);                               /* 前向传播 */
             v_double out = output_layer.output();
-            cout << "> " << cnt++ << " Label: " << each[dim] << "\t";
+            printf("> %05d (", cnt++);                   /* 训练编号 */
             for (auto it : out) {
-                printf("%.6llf ", it);
+                printf("%.6llf, ", it);
             }
-            cout << "Error: " << backward(each[dim]);    /* 误差反向传播 */
-            int right = findMax(out);
-            cout << "\t" << " Predict: " << findMax(out) << "\t";
-            if (right == each[dim]) {
+            printf(")\tError: %.6llf", backward(each[dim]));/* 误差反向传播 */
+            int predict = findMax(out);
+            printf("\tLabel/Predict %d/%d\t", int(each[dim]), predict);
+            if (predict == each[dim]) {
                 right_cnt++;
-                cout << "1";
+                cout << "Right!";
             }
             cout << endl;
         }
@@ -259,16 +259,15 @@ void BPNet::evaluate() {
     for (auto each : test_data) {
         forward(each);
         v_double out = output_layer.output();
-        cout << "> " << cnt++ << "\t";
+        printf("> %02d (", cnt++);
         for (auto it : out) {
-            printf("%.6llf ", it);
+            printf("%.6llf, ", it);
         }
-        cout << "Label: " << each[dim];
-        int right = findMax(out);
-        cout << "\t" << "Predict: " << right << "\t";
-        if (right == each[dim]) {
+        int predict = findMax(out);
+        printf(")\tLabel/Predict %d/%d\t", int(each[dim]), predict);
+        if (predict == each[dim]) {
             right_cnt++;
-            cout << "1";
+            cout << "Right!";
         }
         cout << endl;
 //        backward(each[dim]);
