@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/BPNet.h
+vector
+-
+string
+-
+fstream
+-
+
+../include/Dateset.h
+iostream
+-
+vector
+-
+string
+-
+fstream
+-
+sstream
+-
+ctime
+-
+
+D:/2.code/Cpp/CLion/BP-iris/main.cpp
+Dateset.h
+D:/2.code/Cpp/CLion/BP-iris/Dateset.h
+BPNet.h
+D:/2.code/Cpp/CLion/BP-iris/BPNet.h
+ctime
+-
+
