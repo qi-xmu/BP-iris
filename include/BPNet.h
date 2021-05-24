@@ -35,6 +35,7 @@ using namespace std;
 class Layer {
 public:
     v_double node_value;                /* 节点输出值 */
+    vector<v_double > W;                /* 权重，public这里提供外部修改接口 */
 
     /* 设置初始值 */
     void set(int dim);
@@ -45,11 +46,10 @@ public:
     /* 返回权重节点个数 不包括偏置节点 */
     int nodeSize() const { return node_num; };
     /* 保存使用:到处网络权重值 */
-    vector<v_double > nodeWeights(){ return W; };
+    vector<v_double > nodeWeights() const{ return W; };
 
 protected:
     int node_num;                       /* 网络层权重节点个数，不包含偏置节点 */
-    vector<v_double > W;                /* 权重 */
 };
 
 /* 隐藏神经元层 */
@@ -97,6 +97,8 @@ public:
     void summary();
     /* 模型保存 */
     void save(const string &path);
+    /* 模型加载 */
+    void load(const string &path);
 
 private:
     int dim;                            /* 输入数据维度 */
