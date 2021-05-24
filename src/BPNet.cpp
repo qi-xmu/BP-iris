@@ -228,52 +228,58 @@ double BPNet::backward(int label) {
 }
 
 /* 训练 */
-void BPNet::train(int epoch) {
-    cout << "Start to train >>>" << endl;
-    int cnt = 0, right_cnt = 0;
+double BPNet::train(int epoch) {
+//    cout << "Start to train >>>" << endl;
+    int cnt = 1, right_cnt = 0;
     for (int i = 0; i < epoch; i++) {
         for (auto each : train_data) {
-            forward(each);          /* 前向传播 */
+            forward(each);                               /* 前向传播 */
             v_double out = output_layer.output();
-            cout << "> " << cnt++ << " Label: " << each[dim] << "\t";
+            printf("> %05d (", cnt);                   /* 训练编号 */
             for (auto it : out) {
-                printf("%.6llf ", it);
+                printf("%.6llf, ", it);
             }
-            cout << "Error: " << backward(each[dim]);    /* 误差反向传播 */
-            int right = findMax(out);
-            cout << "\t" << " Predict: " << findMax(out) << "\t";
-            if (right == each[dim]) {
+            backward(each[dim]);
+            printf(")\tError: %.6llf", backward(each[dim]));/* 误差反向传播 */
+            int predict = findMax(out);
+            cnt++;
+            printf("\tLabel/Predict %d/%d\t", int(each[dim]), predict);
+            if (predict == each[dim]) {
                 right_cnt++;
-                cout << "1";
+                cout << "Right!";
             }
             cout << endl;
         }
     }
-    cout << "End trained. Accuracy: " << right_cnt / (double) cnt << "<<<" << endl;
+    double accuracy = right_cnt / (cnt - 1.0);
+    cout << "End trained. Accuracy: " << accuracy << "<<<" << endl;
+    return accuracy;
 }
 
 /* 预测 */
-void BPNet::evaluate() {
+double BPNet::evaluate() {
     cout << "Start to evaluate >>>" << endl;
-    int cnt = 0, right_cnt = 0;
+    int cnt = 1, right_cnt = 0;
     for (auto each : test_data) {
         forward(each);
         v_double out = output_layer.output();
-        cout << "> " << cnt++ << "\t";
+        printf("> %03d (", cnt);
         for (auto it : out) {
-            printf("%.6llf ", it);
+            printf("%.6llf, ", it);
         }
-        cout << "Label: " << each[dim];
-        int right = findMax(out);
-        cout << "\t" << "Predict: " << right << "\t";
-        if (right == each[dim]) {
+        int predict = findMax(out);
+        printf(")\tLabel/Predict %d/%d\t", int(each[dim]), predict);
+        if (predict == each[dim]) {
             right_cnt++;
-            cout << "1";
+            cout << "Right!";
         }
+        cnt++;
         cout << endl;
 //        backward(each[dim]);
     }
-    cout << "End evaluated. Accuracy: " << right_cnt / (double) cnt << "<<<" << endl;
+    double accuracy = right_cnt / (cnt - 1.0);
+    cout << "End evaluated. Accuracy: " << accuracy << "<<<" << endl;
+    return accuracy;
 }
 
 void BPNet::summary() {
@@ -286,12 +292,71 @@ void BPNet::summary() {
     printf("输出层：\t%d个节点\n", output_layer.nodeSize());
 };
 
-v_double BPNet::test() {
-    /* 输入 -> 前向传播 -> 输出 */
-    forward(train_data[0]);
-    backward(0);
-    return output_layer.output();
-};
+/* 模型保存 */
+void BPNet::save(const string &path) {
+    fstream outfile;
+    outfile.open(path, ios::out);
+    outfile << layers_num << endl;
+    int pre_node_size = input_layer.nodeSize();
+    for (int i = 0; i < layers_num; i++) {
+        int node_size = hidden_layers[i].nodeSize();
+        outfile << node_size << " ";
+        outfile << pre_node_size + 1 << endl;
+        vector<v_double > Weights = hidden_layers[i].nodeWeights();
+        for (int j = 0; j < node_size; j++) {
+            for (int k = 0; k <= pre_node_size; k++) {     /* = 偏置 */
+                outfile << Weights[j][k] << " ";
+            }
+            outfile << endl;
+        }
+        pre_node_size = hidden_layers[i].nodeSize();
+    }
+    /* 输出层权重 */
+    int node_size = output_layer.nodeSize();
+    outfile << node_size << " ";
+    outfile << pre_node_size + 1 << endl;
+    vector<v_double > Weights = output_layer.nodeWeights();
+    for (int j = 0; j < num_classes; j++) {               /* 输出层没有偏置 */
+        for (int k = 0; k <= pre_node_size; k++) {     /* = 偏置 */
+            outfile << Weights[j][k] << " ";
+        }
+        outfile << endl;
+    }
+    cout << "Save Finished to " << path << endl;
+}
+
+/* 模型加载 */
+void BPNet::load(const string &path) {
+    ifstream infile(path, ios::in);
+    /* 打开文件失败 */
+    if (!infile.is_open()) {
+        cout << "Error opening file";
+        return;
+    }
+    /* 打开文件成功 */
+    string line, nums;
+    int layer_size;
+    infile >> layer_size;
+    for (int i = 0; i < layer_size; i++) {
+        int node_num, weight_num;
+        infile >> node_num >> weight_num;
+        addHiddenLayer(node_num);       /* 新建一层，已经更新权重 */
+        for (int j = 0; j < node_num; j++) {
+            for (int k = 0; k < weight_num; k++) {
+                 infile >> hidden_layers[i].W[j][k];
+            }
+        }
+    }
+    /* 输出层单独加载 */
+    int node_num, weight_num;
+    infile >> node_num >> weight_num;
+    for (int j = 0; j < node_num; j++) {
+        for (int k = 0; k < weight_num; k++) {
+            infile >> output_layer.W[j][k];
+        }
+    }
+}
+
 
 /*  寻找最大值  */
 int BPNet::findMax(v_double x) {
@@ -304,3 +369,7 @@ int BPNet::findMax(v_double x) {
     }
     return key;
 }
+
+
+
+
