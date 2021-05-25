@@ -30,7 +30,7 @@ int main() {
 
     BPNet load_net(4,3,1);
     load_net.dataReader(d.train_data, data);
-    load_net.load("../model/best-5.0.model");
+    load_net.load("../model/best-6.0.model");
     load_net.evaluate();
     return 0;
 }
