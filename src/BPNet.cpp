@@ -8,6 +8,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -87,7 +88,6 @@ v_double hiddenLayer::calNodeValue(vector<double> value) {
     return node_value;                              /* 节点输出值 */
 }
 
-
 /* 计算各个节点的残差（不包括输出层） */
 void hiddenLayer::calNodeResidual(v_double value) {
     node_residual.resize(node_num + 1);     /* +1 偏置 */
@@ -100,8 +100,8 @@ void hiddenLayer::calNodeResidual(v_double value) {
 /* 反向传播值 残差 * 权值 */
 v_double hiddenLayer::nodeBackValue() {
     /* 计算上一层残差需要的值 */
-    v_double value(pre_node_num + 1);           /* +1 偏置节点 */
-    for (int i = 0; i <= pre_node_num; i++)        /* = 偏置结点 */
+    v_double value(pre_node_num + 1);            /* +1 偏置节点 */
+    for (int i = 0; i <= pre_node_num; i++)         /* = 偏置结点 */
         for (int j = 0; j < node_num; j++) {
             value[i] += node_residual[j] * W[j][i];
         }
@@ -137,6 +137,7 @@ v_double hiddenLayer::outputResidual(int label) {
     return node_residual;
 }
 
+/* 总体误差 */
 double hiddenLayer::totalError(int label) {
     double error = 0;
     /* 制作标签容器 */
@@ -229,18 +230,17 @@ double BPNet::backward(int label) {
 
 /* 训练 */
 double BPNet::train(int epoch) {
-//    cout << "Start to train >>>" << endl;
+    cout << "Start to train >>>" << endl;
     int cnt = 1, right_cnt = 0;
     for (int i = 0; i < epoch; i++) {
         for (auto each : train_data) {
             forward(each);                               /* 前向传播 */
             v_double out = output_layer.output();
-            printf("> %05d (", cnt);                   /* 训练编号 */
+            printf("> %05d (", cnt);                    /* 训练编号 */
             for (auto it : out) {
                 printf("%.6llf, ", it);
             }
-            backward(each[dim]);
-            printf(")\tError: %.6llf", backward(each[dim]));/* 误差反向传播 */
+            printf(")\tError: %.6llf", backward(each[dim]));    /* 误差反向传播 */
             int predict = findMax(out);
             cnt++;
             printf("\tLabel/Predict %d/%d\t", int(each[dim]), predict);
@@ -282,6 +282,7 @@ double BPNet::evaluate() {
     return accuracy;
 }
 
+/* 输出网络结构 */
 void BPNet::summary() {
     printf("输入层：\t%d个节点\n", input_layer.nodeSize());
     cout << "隐藏层：" << endl;
@@ -299,13 +300,13 @@ void BPNet::save(const string &path) {
     outfile << layers_num << endl;
     int pre_node_size = input_layer.nodeSize();
     for (int i = 0; i < layers_num; i++) {
-        int node_size = hidden_layers[i].nodeSize();
+        int node_size = hidden_layers[i].nodeSize();        /* 节点个数 */
         outfile << node_size << " ";
-        outfile << pre_node_size + 1 << endl;
+        outfile << pre_node_size + 1 << endl;               /* 前一层节点数 +1 偏置节点 */
         vector<v_double > Weights = hidden_layers[i].nodeWeights();
         for (int j = 0; j < node_size; j++) {
             for (int k = 0; k <= pre_node_size; k++) {     /* = 偏置 */
-                outfile << Weights[j][k] << " ";
+                outfile << setprecision(10)<< setw(12) << Weights[j][k] << " ";
             }
             outfile << endl;
         }
@@ -316,9 +317,9 @@ void BPNet::save(const string &path) {
     outfile << node_size << " ";
     outfile << pre_node_size + 1 << endl;
     vector<v_double > Weights = output_layer.nodeWeights();
-    for (int j = 0; j < num_classes; j++) {               /* 输出层没有偏置 */
+    for (int j = 0; j < num_classes; j++) {
         for (int k = 0; k <= pre_node_size; k++) {     /* = 偏置 */
-            outfile << Weights[j][k] << " ";
+            outfile << setprecision(10) << setw(12) << Weights[j][k] << " ";
         }
         outfile << endl;
     }
@@ -334,16 +335,15 @@ void BPNet::load(const string &path) {
         return;
     }
     /* 打开文件成功 */
-    string line, nums;
-    int layer_size;
+    int layer_size;                     /* 隐藏层层数 */
     infile >> layer_size;
     for (int i = 0; i < layer_size; i++) {
-        int node_num, weight_num;
+        int node_num, weight_num;       /* 节点个数 权重个数 */
         infile >> node_num >> weight_num;
         addHiddenLayer(node_num);       /* 新建一层，已经更新权重 */
         for (int j = 0; j < node_num; j++) {
             for (int k = 0; k < weight_num; k++) {
-                 infile >> hidden_layers[i].W[j][k];
+                infile >> hidden_layers[i].W[j][k];
             }
         }
     }
@@ -356,7 +356,6 @@ void BPNet::load(const string &path) {
         }
     }
 }
-
 
 /*  寻找最大值  */
 int BPNet::findMax(v_double x) {
