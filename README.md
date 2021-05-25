@@ -28,6 +28,10 @@
 |--iris.data         # 数据集
 ```
 
+### 运行效果
+
+![image-20210525111907229](.README.img/image-20210525111907229.png)
+
 ### 团队成员
 
 [Qi](https://github.com/qi-xmu) | [asd523303](https://github.com/asd52303) 
