@@ -25,12 +25,12 @@ int main() {
 //    net.train(400);             /* 开始训练 */
 //    clock_t end = clock();      /* 结束计时 */
 //    cout << "训练时间：" << (end - start) / (double) CLOCKS_PER_SEC << endl;
-//    net.save("../best-6.0.model");
+//    net.save("../model/best-6.0.model");
 //    net.evaluate();               /* 开始评估 */
 
     BPNet load_net(4,3,1);
     load_net.dataReader(d.train_data, data);
-    load_net.load("../best-5.0.model");
+    load_net.load("../model/best-5.0.model");
     load_net.evaluate();
     return 0;
 }

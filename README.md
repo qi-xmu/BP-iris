@@ -4,3 +4,15 @@
 
 ## 文件结构
 
+```
+|--include
+	|--BPNet.h
+	|--Dataset.h
+|--model
+	|--
+|
+|
+|
+|
+```
+
