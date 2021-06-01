@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBPNet.a  CMakeFiles/BPNet.dir/src/BPNet.cpp.o
+/usr/bin/ranlib libBPNet.a

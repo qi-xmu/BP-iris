@@ -2,8 +2,8 @@
 // Created by 36014 on 2021/5/18.
 //
 
-#ifndef BP_IRIS_DATESET_H
-#define BP_IRIS_DATESET_H
+#ifndef BP_IRIS_DATASET_H
+#define BP_IRIS_DATASET_H
 
 #include <iostream>
 #include <vector>
@@ -15,14 +15,14 @@
 using namespace std;
 
 template<class T>
-class Dateset {
+class Dataset {
 public:
     /* 数据集 */
     int dim{};                      /* 数据维度 */
     vector<vector<T> > train_data;  /* 训练集数据 */
     vector<vector<T> > eval_data;   /* 测试集数据 */
 
-    explicit Dateset(const string &file_path, int dim = 4);
+    explicit Dataset(const string &file_path, int dim = 4);
     /* 加载数据 */
     void dataLoader();
     /* 数据归一化 */
@@ -42,14 +42,14 @@ private:
 };
 
 template<class T>
-Dateset<T>::Dateset(const string &file_path, int dim) {
+Dataset<T>::Dataset(const string &file_path, int dim) {
     this->file_path = file_path;
     this->dim = dim;
 }
 
 /* 加载数据集 */
 template<class T>
-void Dateset<T>::dataLoader() {
+void Dataset<T>::dataLoader() {
     /* 归一化准备
      * 寻找最大值 最小值 */
     max_value.resize(dim, 0);
@@ -85,7 +85,7 @@ void Dateset<T>::dataLoader() {
 
 /* 归一化 */
 template<class T>
-void Dateset<T>::normalize() {
+void Dataset<T>::normalize() {
     for(int i=0;i<data.size();i++){
         for(int j =0;j<dim;j++){
             data[i][j] = (max_value[j] - data[i][j]) / (max_value[j] - min_value[j]);
@@ -94,7 +94,7 @@ void Dateset<T>::normalize() {
 }
 /* 划分数据集 */
 template<class T>
-void Dateset<T>::divide(int mod) {
+void Dataset<T>::divide(int mod) {
     for(int i =0; i < data.size();i++){
         if(i % mod == 0)
             eval_data.push_back(data[i]);
@@ -104,7 +104,7 @@ void Dateset<T>::divide(int mod) {
 }
 
 template<class T>
-void Dateset<T>::confuse(int freq) {
+void Dataset<T>::confuse(int freq) {
     time_t t;
     int len = train_data.size();
     if(len == 0){
@@ -120,7 +120,7 @@ void Dateset<T>::confuse(int freq) {
 }
 
 template<class T>
-void Dateset<T>::print() {
+void Dataset<T>::print() {
     for(auto each : data){
         cout << "> ";
         for(auto it : each){
@@ -132,4 +132,4 @@ void Dateset<T>::print() {
 
 
 
-#endif //BP_IRIS_DATESET_H
+#endif //BP_IRIS_DATASET_H
