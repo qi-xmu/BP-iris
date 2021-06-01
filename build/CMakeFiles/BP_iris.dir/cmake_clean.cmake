@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "BP_iris.exe.manifest"
   "BP_iris.pdb"
   "CMakeFiles/BP_iris.dir/main.cpp.obj"
-  "CMakeFiles/BP_iris.dir/main.cpp.obj.d"
   "libBP_iris.dll.a"
 )
 

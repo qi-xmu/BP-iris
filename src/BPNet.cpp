@@ -53,7 +53,7 @@ void hiddenLayer::set(int pre_node_num, int node_num) {
 }
 
 /* 激活函数 */
-inline double hiddenLayer::sigmod(double x) {
+inline double hiddenLayer::sigmoid(double x) {
     return 1.0 / (1.0 + exp(-x));
 }
 
@@ -83,7 +83,7 @@ v_double hiddenLayer::calNodeValue(vector<double> value) {
         for (int j = 0; j <= pre_node_num; j++) {   /* = 偏置 */
             node_value[i] += W[i][j] * value[j];
         }
-        node_value[i] = sigmod(node_value[i]);   /* 激活函数 */
+        node_value[i] = sigmoid(node_value[i]);   /* 激活函数 */
     }
     return node_value;                              /* 节点输出值 */
 }

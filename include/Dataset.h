@@ -24,7 +24,7 @@ public:
 
     explicit Dataset(const string &file_path, int dim = 4, char sep = ',');
     /* 加载数据 */
-    void dataLoader();
+    void dataLoader(int label_position = -1);
     /* 数据归一化 */
     void normalize();
     /* 划分数据集 */
@@ -65,9 +65,10 @@ Dataset<T>::Dataset(const string &file_path, int dim,char sep) {
 
 /* 加载数据集 */
 template<class T>
-void Dataset<T>::dataLoader() {
+void Dataset<T>::dataLoader(int label_position) {
     /* 归一化准备
      * 寻找最大值 最小值 */
+    if(label_position == -1) label_position = dim;  /* 标签位置默认值 */
 
     max_value.resize(dim, 0);
     min_value.resize(dim, 100000000);
@@ -79,7 +80,7 @@ void Dataset<T>::dataLoader() {
         for (int i = 0; i < dim + 1; i++) {
             getline(num_str, item, sep);
             /* 读取标签 */
-            if (i == dim) {
+            if (i == label_position) {
                 int category_id = notFound(item, category);
                 if(category_id == -1)
                 {
@@ -105,6 +106,15 @@ void Dataset<T>::dataLoader() {
                 line_data.push_back(value);
             }
         }
+        if(dim != label_position){
+            double tmp = line_data[dim];
+            line_data[dim] = line_data[label_position];
+            line_data[label_position] = tmp;
+
+            max_value[label_position] = max_value[dim];
+            min_value[label_position] = min_value[dim];
+        }
+
         data.push_back(line_data);
     }
 }

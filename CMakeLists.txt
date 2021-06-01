@@ -4,7 +4,7 @@ project(BP_iris)
 set(CMAKE_CXX_STANDARD 11)
 
 INCLUDE_DIRECTORIES(
-        include
+        ./include
 )
 # 编译静态库
 add_library(BPNet STATIC src/BPNet.cpp)

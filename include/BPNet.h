@@ -84,7 +84,7 @@ public:
 
 private:
     int pre_node_num;                   /* 上一层节点数 */
-    inline double sigmod(double x);     /* 激活函数 */
+    inline double sigmoid(double x);     /* 激活函数 */
 };
 
 class BPNet {
