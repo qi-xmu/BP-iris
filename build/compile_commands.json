@@ -1,0 +1,12 @@
+[
+{
+  "directory": "D:/2.code/Cpp/CLion/BP-iris/build",
+  "command": "C:\\UserApp\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/BPNet.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\BPNet.dir\\src\\BPNet.cpp.obj -c D:\\2.code\\Cpp\\CLion\\BP-iris\\src\\BPNet.cpp",
+  "file": "D:/2.code/Cpp/CLion/BP-iris/src/BPNet.cpp"
+},
+{
+  "directory": "D:/2.code/Cpp/CLion/BP-iris/build",
+  "command": "C:\\UserApp\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/BP_iris.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles\\BP_iris.dir\\main.cpp.obj -c D:\\2.code\\Cpp\\CLion\\BP-iris\\main.cpp",
+  "file": "D:/2.code/Cpp/CLion/BP-iris/main.cpp"
+}
+]
