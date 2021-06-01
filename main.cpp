@@ -1,11 +1,11 @@
-#include "Dateset.h"
+#include "Dataset.h"
 #include "BPNet.h"
 #include <ctime>
 
 using namespace std;
 
 int main() {
-    Dateset<double> d(R"(..\iris.data)");
+    Dataset<double> d(R"(..\iris.data)");
 
     d.dataLoader();          /* 加载数据 */
     d.normalize();           /* 数据归一化 */

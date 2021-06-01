@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/BPNet.dir/src/BPNet.cpp.obj"
+  "CMakeFiles/BPNet.dir/src/BPNet.cpp.obj.d"
   "libBPNet.a"
   "libBPNet.pdb"
 )

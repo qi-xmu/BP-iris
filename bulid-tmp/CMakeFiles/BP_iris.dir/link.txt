@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/BP_iris.dir/main.cpp.o  -o BP_iris libBPNet.a 

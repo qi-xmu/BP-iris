@@ -238,9 +238,9 @@ double BPNet::train(int epoch) {
             v_double out = output_layer.output();
             printf("> %05d (", cnt);                    /* 训练编号 */
             for (auto it : out) {
-                printf("%.6llf, ", it);
+                printf("%.6f, ", it);
             }
-            printf(")\tError: %.6llf", backward(each[dim]));    /* 误差反向传播 */
+            printf(")\tError: %.6f", backward(each[dim]));    /* 误差反向传播 */
             int predict = findMax(out);
             cnt++;
             printf("\tLabel/Predict %d/%d\t", int(each[dim]), predict);
@@ -265,7 +265,7 @@ double BPNet::evaluate() {
         v_double out = output_layer.output();
         printf("> %03d (", cnt);
         for (auto it : out) {
-            printf("%.6llf, ", it);
+            printf("%.6f, ", it);
         }
         int predict = findMax(out);
         printf(")\tLabel/Predict %d/%d\t", int(each[dim]), predict);

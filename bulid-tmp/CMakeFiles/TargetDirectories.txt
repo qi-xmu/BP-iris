@@ -1,0 +1,4 @@
+/mnt/d/2.code/Cpp/CLion/BP-iris/bulid-tmp/CMakeFiles/rebuild_cache.dir
+/mnt/d/2.code/Cpp/CLion/BP-iris/bulid-tmp/CMakeFiles/edit_cache.dir
+/mnt/d/2.code/Cpp/CLion/BP-iris/bulid-tmp/CMakeFiles/BPNet.dir
+/mnt/d/2.code/Cpp/CLion/BP-iris/bulid-tmp/CMakeFiles/BP_iris.dir
