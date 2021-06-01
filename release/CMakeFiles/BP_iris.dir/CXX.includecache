@@ -14,7 +14,7 @@ string
 fstream
 -
 
-../include/Dateset.h
+../include/Dataset.h
 iostream
 -
 vector
@@ -29,8 +29,8 @@ ctime
 -
 
 D:/2.code/Cpp/CLion/BP-iris/main.cpp
-Dateset.h
-D:/2.code/Cpp/CLion/BP-iris/Dateset.h
+Dataset.h
+D:/2.code/Cpp/CLion/BP-iris/Dataset.h
 BPNet.h
 D:/2.code/Cpp/CLion/BP-iris/BPNet.h
 ctime
