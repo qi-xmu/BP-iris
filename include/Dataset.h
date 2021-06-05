@@ -90,12 +90,6 @@ void Dataset<T>::dataLoader(int label_position) {
                 else{
                     line_data.push_back(category_id);
                 }
-//                if (item == "Iris-setosa")              /* 种类一 标签 0 */
-//                    line_data.push_back(0);
-//                else if (item == "Iris-versicolor")     /* 种类二 标签 1 */
-//                    line_data.push_back(1);
-//                else if (item == "Iris-virginica")      /* 种类三 标签 2 */
-//                    line_data.push_back(2);
             }
             else {
                 /* 储存最大值和最小值 */
